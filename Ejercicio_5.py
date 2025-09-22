@@ -132,14 +132,13 @@ if __name__ == "__main__":
         parser.add_argument("--lr", type=float, default=0.01, help="Learning rate")
         parser.add_argument("--hidden_units", type=int, default=128, help="Unidades de la capa oculta")
         parser.add_argument("--train", type=str, default="mnist_train.npz", help="Archivo de entrenamiento")
-        parser.add_argument("--test", type=str, default="mnist_test.npz", help="Archivo de test")
         parser.add_argument("--output", type=str, default="Modelo_MNIST.json", help="Archivo para exportar el modelo")
         parser.add_argument("--load", type=str, help="Ruta a un modelo JSON previamente guardado")
         args = parser.parse_args()
 
         if args.load:
             layer1, layer2 = cargar_modelo(args.load)
-            evaluar_modelo(layer1, layer2, args.test)
+            evaluar_modelo(layer1, layer2)
         else:
             data = np.load(args.train)
             images = data["images"]
